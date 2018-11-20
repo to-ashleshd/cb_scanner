@@ -22,7 +22,9 @@ Route::get('/scan_documents', function () {
 Route::get('/scan', "ScanTaskController@index");
 Route::get('/subjects/{class_id}/class', "ScanTaskController@getClassSubjects");
 Route::post('/load_books', "ScanTaskController@getClassSubjectBooks");
+Route::get('/chapters/{book_id}/books', "ScanTaskController@getChaptersByBook");
 
 Route::post('/load_books', "ScanTaskController@getClassSubjectBooks");
 Route::post('/scan_submit', "ScanTaskController@ScanDocument");
+Route::post('/upload_chapter_pdf', "ScanTaskController@UploadChapterPdf");
 

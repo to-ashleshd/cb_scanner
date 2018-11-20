@@ -82,9 +82,16 @@
                 </div>	
                 <div class="row col-md-12">
                     <button type="button" class="btn btn-default" id="scan_submit" 
-                            load-url="{{ url('/scan_submit') }}">Scan</button>
+                            load-url="{{ url('/scan_submit') }}" 
+                            load-chapter-url="{{ url('/chapters') }}">Scan</button>
                 </div>
             </form>
+
+            <div id="chapters_div" class="col-sm-12 col-md-12 col-xs-12" style="margin-top: 15px;">
+                
+
+            </div>
+
         </div><!-- Main component for a primary marketing message or call to action -->
     </body>
 </html>
