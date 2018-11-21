@@ -2,6 +2,6 @@
 return [
     'api' => [
         'cbct' => 'http://cbct.api.com/api/cbct/',
-        'scanner' => 'http://scan-document.api.com/'
+        'scanner' => 'https://192.168.0.216:8087/'
     ]
 ];
