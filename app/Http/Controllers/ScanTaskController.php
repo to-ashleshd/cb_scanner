@@ -77,12 +77,22 @@ class ScanTaskController extends Controller {
         # get all class list from live CB database from cbct api.
         //$cbct_api = Config::get('constants.api.scanner');
         
-        $res = $this->getImage(); //Curl::to($cbct_api."/multiple-scan")->get();
-        //print_r($res); exit;
+        $cbct_api = Config::get('constants.api.scanner');
+        //echo $cbct_api."multi-scan";
+        $res = Curl::to($cbct_api."multi-scan")->withData( array( 'duplex' => '1' ) )
+        ->withOption('SSL_VERIFYHOST', false)
+        ->withOption('TIMEOUT',0)
+        ->get();
+        //var_dump($res); 
+
         $response = json_decode($res);
+        
+        //$res = $this->getImage(); //Curl::to($cbct_api."/multiple-scan")->get();
+        //print_r($res); exit;
+        //$response = json_decode($res);
         //print_r($response); exit;
         
-        if($response->status == 200){
+        if($response->code == 200){
             if (!file_exists($temp_path)) {mkdir($temp_path, 0777, true);}
             
             if (!file_exists($class_path)) {mkdir($class_path, 0777, true);}
@@ -135,7 +145,24 @@ class ScanTaskController extends Controller {
     }
     
     public function UploadChapterPdf(Request $request){
-        print_r($request->all());
+        extract($request->all());
+        $temp_path = "E:/Scan_images/";
+        $class_path = $temp_path.$class_id."/";
+        $subject_path = $temp_path.$class_id."/".$subject_id."/";
+        $book_path = $temp_path.$class_id."/".$subject_id."/".$book_id."/";
+        
+        $images_arr = array();
+        for($i = $from_page; $i<= $to_page; $i++){
+            echo "<br/> no : ". $i;
+            $images_arr[] = $book_path.$i.".png";
+            
+            
+        }
+        
+        $pdf = new \Imagick($images_arr);
+        $pdf->setImageFormat('pdf');
+        $pdf->writeImages($_SERVER['DOCUMENT_ROOT'] . '/book_pdf/'.$chapter_id.'.pdf', true); 
+        
     }
 
     public function getImage(){
