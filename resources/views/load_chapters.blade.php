@@ -19,7 +19,7 @@
                                placeholder="Enter From Page No." ></td>
                     <td><input type="text" id="to_page_{{$value->id}}" class="to_page form-control" 
                                placeholder="Enter To Page No."></td>
-                    <td><button type="button" data-chapter_id="{{$value->id}}" id="chapter_submit" 
+                    <td><button type="button" data-chapter_id="{{$value->id}}" id="chapter_submit_{{$value->id}}" 
                                class="chapter_submit btn btn-primary"
                                load-url="{{ url('/upload_chapter_pdf') }}">Chapter Submit</button></td>
                 </tr>
