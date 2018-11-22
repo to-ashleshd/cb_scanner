@@ -28,6 +28,7 @@ Route::post('/load_books', "ScanTaskController@getClassSubjectBooks");
 Route::post('/scan_submit', "ScanTaskController@ScanDocument");
 Route::post('/upload_chapter_pdf', "ScanTaskController@UploadChapterPdf");
 
+Route::get('/view', "ScanTaskController@view");
 
 //Route::get('/test_api', "ScanedPdfUploadController@index");
 

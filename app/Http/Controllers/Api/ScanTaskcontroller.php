@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller\Api;
+use App\Scan_details_live;
 
 class ScanTaskcontroller extends Controller
 {
@@ -52,14 +53,20 @@ class ScanTaskcontroller extends Controller
         $book_path = $temp_path.$class_id."/".$subject_id."/".$book_id."/";*/
         $chapter_path = $temp_path.$class_id."/".$subject_id."/".$book_id."/"."$chapter_id";
         
-
+        $pdf_path = $_SERVER['HTTP_HOST']."/book_pdf/".$class_id."/".$subject_id."/".$book_id."/".$chapter_id."/";
+        
         if(!empty($details) && !empty($pdf)){
             if (!file_exists($chapter_path)) {mkdir($chapter_path, 0777, true);}
-            
-            $temp_file_name = $chapter_path. '/'.$chapter_id.'_('.$pdf_number.')_'.date('Y_m_d_H_i_s').'.pdf';
+            $pdf_name = $chapter_id.'_('.$pdf_number.')_'.date('Y_m_d_H_i_s').'.pdf';
+            $temp_file_name = $chapter_path. '/'.$pdf_name;
             $res = file_put_contents($temp_file_name, base64_decode($pdf));
 			
             if($res){
+                $details['pdf_name'] = $pdf_name;
+                $details['pdf_path'] = $pdf_path;
+                
+                $scan_details = Scan_details_live::create($details);
+                
                 $response['code']       = 200;
                 $response['message']    = "SUCCESS";
                 $response['data']       = $temp_file_name;

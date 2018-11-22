@@ -10,13 +10,23 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
-        <script src="{{ asset('jquery/dist/jquery.min.js') }}"></script>
-        <script src="{{ asset('js/jquery-ui.js') }}"></script>
-
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/HoldOn.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/app.min.css') }}" rel="stylesheet" type="text/css"/>
+        
+        <script src="{{ asset('includes/jquery/dist/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/jquery-ui.js') }}"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        
+        <script src="{{ asset('includes/bootstrap-growl/bootstrap-growl.min.js') }}"></script>  
+        
+        
+        <link href="{{ asset('includes/bootstrap-sweetalert/lib/sweet-alert.css') }}" rel="stylesheet" type="text/css">
+        <script src="{{ asset('includes/bootstrap-sweetalert/lib/sweet-alert.min.js') }}"></script>
+        
+        <script src="{{ asset('js/HoldOn.min.js') }}"></script>
         <script src="{{ asset('js/commonJs.js') }}"></script>
-
+        <script src="{{ asset('js/cm.js') }}"></script>
     </head>
     <body style="padding-top:70px">
 
@@ -60,7 +70,7 @@
                             <label for="class">Select Class</label>
                             <select class="selectpicker form-control" name="class_id" id="class_id"
                                     load-url="{{ url('/subjects/') }}">
-                                <option value=""></option>
+                                <option value="">Select Class</option>
                                 @foreach($classes as $key=>$value)
                                 <option value="{{$value['id']}}">{{$value['name']}}</option>
                                 @endforeach
@@ -70,13 +80,17 @@
                     <div class="col-md-4" >
                         <div class="form-group" id="subject_div">
                             <label for="class">Select subject</label>
-                            <select class="selectpicker form-control" name="subject_id" id="subjet_id"></select>
+                            <select class="selectpicker form-control" name="subject_id" id="subject_id">
+                                <option value="">Select Subject</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group" id="book_div">
                             <label for="class">Select Book</label>
-                            <select class="selectpicker form-control" name="book_id" id="book_id"></select>
+                            <select class="selectpicker form-control" name="book_id" id="book_id">
+                                <option value="">Select Book</option>
+                            </select>
                         </div>
                     </div>
                 </div>	
@@ -94,4 +108,5 @@
 
         </div><!-- Main component for a primary marketing message or call to action -->
     </body>
+    
 </html>
