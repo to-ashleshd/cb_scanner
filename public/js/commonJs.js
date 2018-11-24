@@ -122,11 +122,10 @@ $(document).on("click", ".chapter_submit", function () {
             data: {class_id: class_id, subject_id: subject_id, book_id: book_id, chapter_id: chapter_id,
                 from_page: from_page, to_page: to_page},
             success: function (result) {
-
-    //            $("#chapter_submit_"+chapter_id).addClass("hide");
                 $("#chapter_submit_" + chapter_id).attr("disabled", true);
-
-                alert(result.code);
+                $("#chapter_submit_" + chapter_id).attr("data-status", "done");
+                $("#chapter_submit_" + chapter_id).removeClass("btn-primary").addClass("btn-secondary");
+                notify("Success!! Chapter submitted successfully.", "success");
             }
         });
     }

@@ -104,12 +104,12 @@ function notify(message, type){
         type: type,
         allow_dismiss: true,
         label: 'Cancel',
-        className: 'btn btn-inverse',
+        className: 'alert alert-primary',
         placement: {
             from: 'top',
             align: 'center'
         },
-        delay: 7000 ,
+        delay: 7000,
         animate: {
                 enter: 'animated fadeIn',
                 exit: 'animated fadeOut'
